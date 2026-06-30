@@ -22,4 +22,9 @@
     display: flex;
     flex: 1;
     border: 0.5rem solid black;
+    justify-content: center;
+    align-items: center;
+}
+.mark-text {
+    font-size: 150px;
 }

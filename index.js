@@ -16,11 +16,19 @@ const lines = [
     [2, 4, 6],
 ];
 
+function renderMark() {
+    const container = document.querySelector(".box");
+    const text = document.createElement("p");
+    text.textContent = "X";
+    text.classList.add("mark-text")
+    container.appendChild(text);
+}
+
 function markBoard(index, player) {
     if (board[index] === "_") {
         const newBoard = board.splice(index, 1, player);
-    checkWinner(player);
-    return newBoard;
+        checkWinner(player);
+        return newBoard;
     } else {
         // TODO: allow user to select another spot
         throw new Error("Spot is already marked")
@@ -43,31 +51,35 @@ function checkWinner(player) {
     }
 }
 
+const btn = document.querySelector("#mark");
+btn.onclick = () => renderMark(0, "X");
+
 // TODO: 
 // run node index.js see empty board
 // Player 1 is "X" Player 2 is "O"
 // Tell Player 1 to start
 
-console.log(board)
+// console.log(board)
 
-markBoard(0, "X")
+// markBoard(0, "X")
 
-console.log(board)
-markBoard(7, "O")
+// console.log(board)
+// markBoard(7, "O")
 
-console.log(board)
-markBoard(1, "X")
+// console.log(board)
+// markBoard(1, "X")
 
-console.log(board)
-markBoard(2, "O")
+// console.log(board)
+// markBoard(2, "O")
 
-console.log(board)
-markBoard(4, "X")
+// console.log(board)
+// markBoard(4, "X")
 
-console.log(board)
-markBoard(6, "O")
+// console.log(board)
+// markBoard(6, "O")
 
-console.log(board)
-markBoard(8, "X")
+// console.log(board)
+// markBoard(8, "X")
 
-console.log(board)
+// console.log(board)
+
