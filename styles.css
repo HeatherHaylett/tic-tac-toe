@@ -3,6 +3,7 @@
 }
 #container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 20px;
@@ -27,4 +28,7 @@
 }
 .mark-text {
     font-size: 150px;
+}
+.winner-text {
+    font-size: 100px;
 }

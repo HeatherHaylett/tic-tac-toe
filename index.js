@@ -20,7 +20,15 @@ function renderMark(index, player) {
     const container = document.querySelector(`#box-${index}`);
     const text = document.createElement("p");
     text.textContent = player;
-    text.classList.add("mark-text")
+    text.classList.add("mark-text");
+    container.appendChild(text);
+}
+
+function renderWinner(player) {
+    const container = document.querySelector(`#footer`);
+    const text = document.createElement("p");
+    text.textContent = `Player ${player} wins!`;
+    text.classList.add("winner-text");
     container.appendChild(text);
 }
 
@@ -51,7 +59,7 @@ function checkWinner(player) {
     for (const line of lines) {
         // If each call of includes returns true, announce winner
         if (line.every(index => currentPlayerBoard.includes(index))) {
-            console.log("found")
+            renderWinner(currentPlayer);
             return;
         } 
     }
