@@ -29,8 +29,8 @@ function markBoard(event, player) {
     const index = id.charAt(4);
     if (board[index] === "_") {
         const newBoard = board.splice(index, 1, player);
-        checkWinner(player);
         renderMark(index, player);
+        checkWinner(player);
         return newBoard;
     } else {
         // TODO: allow user to select another spot
@@ -44,16 +44,18 @@ let currentPlayer = "X";
 function checkWinner(player) {
     // Player is "X" or "O"
     // Get all indexs of current player marks
-    const currentPlayer = board.map((square, index) =>
+    const currentPlayerBoard = board.map((square, index) =>
         square === player ? index : undefined)
         .filter((index) => index !== undefined);
     // Loop through possible winning combinations
     for (const line of lines) {
         // If each call of includes returns true, announce winner
-        if (line.every(index => currentPlayer.includes(index))) {
+        if (line.every(index => currentPlayerBoard.includes(index))) {
             console.log("found")
-        }
+            return;
+        } 
     }
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
 }
 
 let btns = document.querySelectorAll('.box');
