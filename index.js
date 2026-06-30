@@ -16,25 +16,30 @@ const lines = [
     [2, 4, 6],
 ];
 
-function renderMark() {
-    const container = document.querySelector(".box");
+function renderMark(index, player) {
+    const container = document.querySelector(`#box-${index}`);
     const text = document.createElement("p");
-    text.textContent = "X";
+    text.textContent = player;
     text.classList.add("mark-text")
     container.appendChild(text);
 }
 
-function markBoard(index, player) {
+function markBoard(event, player) {
+    const id = event.currentTarget.id.toString();
+    const index = id.charAt(4);
     if (board[index] === "_") {
         const newBoard = board.splice(index, 1, player);
         checkWinner(player);
+        renderMark(index, player);
         return newBoard;
     } else {
         // TODO: allow user to select another spot
         throw new Error("Spot is already marked")
     }
-    
+
 }
+
+let currentPlayer = "X";
 
 function checkWinner(player) {
     // Player is "X" or "O"
@@ -51,8 +56,10 @@ function checkWinner(player) {
     }
 }
 
-const btn = document.querySelector("#mark");
-btn.onclick = () => renderMark(0, "X");
+let btns = document.querySelectorAll('.box');
+btns.forEach(btn => {
+    btn.addEventListener('click', () => markBoard(event, currentPlayer));
+})
 
 // TODO: 
 // run node index.js see empty board
