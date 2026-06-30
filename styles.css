@@ -1,0 +1,25 @@
+* {
+    margin: 0
+}
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+#board-container {
+    width: 30vw;
+    height: 60vh;
+    border: 0.5rem solid black;
+    display: flex;
+    flex-direction: column;
+}
+.row {
+    display: flex;
+    flex: 1;
+}
+.box {
+    display: flex;
+    flex: 1;
+    border: 0.5rem solid black;
+}
