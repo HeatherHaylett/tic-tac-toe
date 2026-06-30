@@ -2,7 +2,7 @@
 // Player 1 (X) and Player 2 (O) mark a square alternating turns
 // Game play ends when one player marks 3 rows vertically, horizontally, or diagonally
 
-const board = [...Array(9)];
+const board = Array.from({ length: 9 }, v => v = "_");
 
 // winning combo of index
 const lines = [
@@ -17,7 +17,7 @@ const lines = [
 ];
 
 function markBoard(index, player) {
-    if (board[index] === undefined) {
+    if (board[index] === "_") {
         const newBoard = board.splice(index, 1, player);
     checkWinner(player);
     return newBoard;
@@ -48,10 +48,12 @@ function checkWinner(player) {
 // Player 1 is "X" Player 2 is "O"
 // Tell Player 1 to start
 
+console.log(board)
+
 markBoard(0, "X")
 
 console.log(board)
-markBoard(0, "O")
+markBoard(7, "O")
 
 console.log(board)
 markBoard(1, "X")
