@@ -63,32 +63,4 @@ btns.forEach(btn => {
     btn.addEventListener('click', () => markBoard(event, currentPlayer));
 })
 
-// TODO: 
-// run node index.js see empty board
-// Player 1 is "X" Player 2 is "O"
-// Tell Player 1 to start
-
-// console.log(board)
-
-// markBoard(0, "X")
-
-// console.log(board)
-// markBoard(7, "O")
-
-// console.log(board)
-// markBoard(1, "X")
-
-// console.log(board)
-// markBoard(2, "O")
-
-// console.log(board)
-// markBoard(4, "X")
-
-// console.log(board)
-// markBoard(6, "O")
-
-// console.log(board)
-// markBoard(8, "X")
-
-// console.log(board)
 
