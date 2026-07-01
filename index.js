@@ -2,7 +2,20 @@
 // Player 1 (X) and Player 2 (O) mark a square alternating turns
 // Game play ends when one player marks 3 rows vertically, horizontally, or diagonally
 
-const board = Array.from({ length: 9 }, v => v = "_");
+let btns = document.querySelectorAll('.box');
+btns.forEach(btn => {
+    btn.addEventListener('click', () => markBoard(event, currentPlayer));
+})
+
+function renderMark(index, player) {
+    const container = document.querySelector(`#box-${index}`);
+    const text = document.createElement("p");
+    text.textContent = player;
+    text.classList.add("mark-text");
+    container.appendChild(text);
+}
+
+let board = Array.from({ length: 9 }, v => v = "_");
 
 // winning combo of index
 const lines = [
@@ -16,35 +29,17 @@ const lines = [
     [2, 4, 6],
 ];
 
-function renderMark(index, player) {
-    const container = document.querySelector(`#box-${index}`);
-    const text = document.createElement("p");
-    text.textContent = player;
-    text.classList.add("mark-text");
-    container.appendChild(text);
-}
-
-function renderWinner(player) {
-    const container = document.querySelector(`#footer`);
-    const text = document.createElement("p");
-    text.textContent = `Player ${player} wins!`;
-    text.classList.add("winner-text");
-    container.appendChild(text);
-}
-
 function markBoard(event, player) {
     const id = event.currentTarget.id.toString();
     const index = id.charAt(4);
     if (board[index] === "_") {
-        const newBoard = board.splice(index, 1, player);
+        board.splice(index, 1, player);
         renderMark(index, player);
-        checkWinner(player);
-        return newBoard;
     } else {
         // TODO: allow user to select another spot
         throw new Error("Spot is already marked")
     }
-
+    checkWinner(player);
 }
 
 let currentPlayer = "X";
@@ -59,16 +54,14 @@ function checkWinner(player) {
     for (const line of lines) {
         // If each call of includes returns true, announce winner
         if (line.every(index => currentPlayerBoard.includes(index))) {
-            renderWinner(currentPlayer);
+            //Display winner
+            alert(`Player ${player} wins!`);
+            //Clear the board to reset the game
             return;
-        } 
+        }
     }
     currentPlayer = currentPlayer === "X" ? "O" : "X";
 }
 
-let btns = document.querySelectorAll('.box');
-btns.forEach(btn => {
-    btn.addEventListener('click', () => markBoard(event, currentPlayer));
-})
 
 
