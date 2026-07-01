@@ -51,6 +51,11 @@ function markBoard(event, player) {
 
 let currentPlayer = "X";
 
+function endGame(player) {
+    alert(`Player ${player} wins!`);
+    clearBoard();
+}
+
 function checkWinner(player) {
     // Player is "X" or "O"
     // Get all indexs of current player marks
@@ -61,9 +66,8 @@ function checkWinner(player) {
     for (const line of lines) {
         // If each call of includes returns true, announce winner
         if (line.every(index => currentPlayerBoard.includes(index))) {
-            //Display winner
-            setTimeout(() => alert(`Player ${player} wins!`), 500);
-            //Clear the board to reset the game
+            //Display winner and clear the board
+            setTimeout(() => endGame(player), 500);
             board = [...Array(9)];
             return;
         }
