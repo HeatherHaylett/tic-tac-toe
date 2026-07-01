@@ -35,11 +35,11 @@ function markBoard(event, player) {
     if (board[index] === "_") {
         board.splice(index, 1, player);
         renderMark(index, player);
+        checkWinner(player);
     } else {
         // TODO: allow user to select another spot
         throw new Error("Spot is already marked")
     }
-    checkWinner(player);
 }
 
 let currentPlayer = "X";
@@ -55,7 +55,7 @@ function checkWinner(player) {
         // If each call of includes returns true, announce winner
         if (line.every(index => currentPlayerBoard.includes(index))) {
             //Display winner
-            alert(`Player ${player} wins!`);
+            setTimeout(() => alert(`Player ${player} wins!`), 500);
             //Clear the board to reset the game
             return;
         }
