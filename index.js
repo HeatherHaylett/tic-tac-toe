@@ -19,9 +19,6 @@ function clearBoard() {
     document.querySelectorAll(".mark-text").forEach(e => e.remove());
 }
 
-let reset = document.querySelector("#reset");
-reset.addEventListener("click", () => clearBoard());
-
 let board = [...Array(9)];
 
 // winning combo of index
