@@ -2,6 +2,8 @@
 // Player 1 (X) and Player 2 (O) mark a square alternating turns
 // Game play ends when one player marks 3 rows vertically, horizontally, or diagonally
 
+// ------ HTML -------- //
+
 let btns = document.querySelectorAll('.box');
 btns.forEach(btn => {
     btn.addEventListener('click', () => markBoard(event, currentPlayer));
@@ -19,9 +21,12 @@ function clearBoard() {
     document.querySelectorAll(".mark-text").forEach(e => e.remove());
 }
 
-let board = [...Array(9)];
+// -------------- //
 
-// winning combo of index
+let board = [...Array(9)];
+let currentPlayer = "X";
+
+// winning index combo
 const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -45,8 +50,6 @@ function markBoard(event, player) {
         alert("This square is already taken!");
     }
 }
-
-let currentPlayer = "X";
 
 function endGame(message) {
     alert(message);
