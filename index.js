@@ -15,7 +15,14 @@ function renderMark(index, player) {
     container.appendChild(text);
 }
 
-let board = Array.from({ length: 9 }, v => v = "_");
+function clearBoard() {
+    document.querySelectorAll(".mark-text").forEach(e => e.remove());
+}
+
+let reset = document.querySelector("#reset");
+reset.addEventListener("click", () => clearBoard());
+
+let board = [...Array(9)];
 
 // winning combo of index
 const lines = [
@@ -32,7 +39,7 @@ const lines = [
 function markBoard(event, player) {
     const id = event.currentTarget.id.toString();
     const index = id.charAt(4);
-    if (board[index] === "_") {
+    if (board[index] === undefined) {
         board.splice(index, 1, player);
         renderMark(index, player);
         checkWinner(player);
@@ -57,6 +64,7 @@ function checkWinner(player) {
             //Display winner
             setTimeout(() => alert(`Player ${player} wins!`), 500);
             //Clear the board to reset the game
+            board = [...Array(9)];
             return;
         }
     }
