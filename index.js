@@ -42,18 +42,25 @@ function markBoard(event, player) {
         checkWinner(player);
     } else {
         // TODO: allow user to select another spot
-        throw new Error("Spot is already marked")
+        console.error("invalid selection");
+        alert("This square is already taken!");
     }
 }
 
 let currentPlayer = "X";
 
-function endGame(player) {
-    alert(`Player ${player} wins!`);
+function endGame(message) {
+    alert(message);
     clearBoard();
+    currentPlayer = "X";
+    board = [...Array(9)];
 }
 
 function checkWinner(player) {
+    // Check if all squares are marked
+    if (board.filter((square) => square === undefined).length === 0) {
+        setTimeout(() => endGame("It's a tie!"), 500);
+    }
     // Player is "X" or "O"
     // Get all indexs of current player marks
     const currentPlayerBoard = board.map((square, index) =>
@@ -64,8 +71,7 @@ function checkWinner(player) {
         // If each call of includes returns true, announce winner
         if (line.every(index => currentPlayerBoard.includes(index))) {
             //Display winner and clear the board
-            setTimeout(() => endGame(player), 500);
-            board = [...Array(9)];
+            setTimeout(() => endGame(`Player ${player} wins!`), 500);
             return;
         }
     }
