@@ -41,7 +41,6 @@ function markBoard(event, player) {
         renderMark(index, player);
         checkWinner(player);
     } else {
-        // TODO: allow user to select another spot
         console.error("invalid selection");
         alert("This square is already taken!");
     }
